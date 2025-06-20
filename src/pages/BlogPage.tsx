@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import BlogPostCard from '../components/BlogPostCard';
 import { blogPosts } from '../data/blogData';
 import { Search } from 'lucide-react';

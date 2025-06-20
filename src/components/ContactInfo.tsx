@@ -1,43 +1,30 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock, ExternalLink } from 'lucide-react';
+import { div } from 'framer-motion/client';
+import dunyaImage from '../assets/our-home.webp';
 
 const ContactInfo: React.FC = () => {
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">İletişim</h2>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Bize de yazın</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-6">
           <div className="space-y-4">
-            <h3 className="text-lg font-medium text-gray-700">İletişim Bilgileri</h3>
             
             <div className="flex items-start">
               <MapPin className="text-teal-600 mt-1 mr-3" size={20} />
               <div>
-                <p className="text-gray-800">Gümüşsuyu Mah. İnönü Cad.</p>
-                <p className="text-gray-800">No: 123, Beyoğlu</p>
-                <p className="text-gray-800">İstanbul, Türkiye</p>
+                <p className="text-gray-800">Dünyada bir yerdeyiz</p>
               </div>
             </div>
-            
-            <div className="flex items-center">
-              <Phone className="text-teal-600 mr-3" size={20} />
-              <p className="text-gray-800">+90 555 123 4567</p>
-            </div>
+          
             
             <div className="flex items-center">
               <Mail className="text-teal-600 mr-3" size={20} />
               <p className="text-gray-800">info@diyemedim.com</p>
             </div>
             
-            <div className="flex items-start">
-              <Clock className="text-teal-600 mt-1 mr-3" size={20} />
-              <div>
-                <p className="text-gray-800">Pazartesi - Cuma: 09:00 - 18:00</p>
-                <p className="text-gray-800">Cumartesi: 10:00 - 14:00</p>
-                <p className="text-gray-800">Pazar: Kapalı</p>
-              </div>
-            </div>
           </div>
           
           <div>
@@ -70,31 +57,13 @@ const ContactInfo: React.FC = () => {
             </div>
           </div>
         </div>
-        
-        <div className="h-64 md:h-full rounded-lg overflow-hidden">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12040.636258570607!2d28.978689567790933!3d41.03289715720473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7650656bd63%3A0x8ca058b28c20b6c3!2zVGFrc2ltIE1leWRhbsSxLCBHw7xtw7zFn3N1eXUsIDM0NDM1IEJleW_En2x1L8Swc3RhbmJ1bA!5e0!3m2!1str!2str!4v1715388834188!5m2!1str!2str" 
-            width="100%" 
-            height="100%" 
-            style={{ border: 0 }} 
-            allowFullScreen 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Google Maps"
-          ></iframe>
+        <div className="rounded-lg overflow-hidden items-center-safe">
+          <img
+            src={dunyaImage}
+            alt="Dünya Haritası"
+            className="w-[250px] object-cover"
+          />
         </div>
-      </div>
-      
-      <div className="mt-8 text-center">
-        <a 
-          href="https://goo.gl/maps/PxP5V4oEXnQ8ZQnW9" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors"
-        >
-          <span className="mr-1">Google Haritalar'da Görüntüle</span>
-          <ExternalLink size={16} />
-        </a>
       </div>
     </div>
   );
