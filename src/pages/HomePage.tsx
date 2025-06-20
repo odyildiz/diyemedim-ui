@@ -44,10 +44,10 @@ const HomePage: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="mb-10 text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-4 animate-pulse">
-          Son Blog Yazıları
+          {t('homepage.latestPosts')}
         </h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          En son eklenen blog yazılarımızı keşfedin. Düşüncelerimizi, deneyimlerimizi ve önerilerimizi sizlerle paylaşıyoruz.
+          {t('homepage.latestPostsDesc')}
         </p>
         </div>
         
