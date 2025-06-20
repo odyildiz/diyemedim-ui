@@ -10,10 +10,16 @@ const ContactForm: React.FC = () => {
   const [formSuccess, setFormSuccess] = useState('');
 
   const messageTypes = [
-    { id: 'oneri', label: 'Öneri' },
-    { id: 'sikayet', label: 'Şikayet' },
-    { id: 'tesekkur', label: 'Teşekkür' },
-    { id: 'soru', label: 'Soru' }
+    { id: 'ter-kokusu', label: 'Ter Kokusunu' },
+    { id: 'agiz-kokusu', label: 'Ağız Kokusunu' },
+    { id: 'kotu-saka', label: 'Kötü Şakaları' },
+    { id: 'bahane-uretilmesi', label: 'Bahane Üretilmesini' },
+    { id: 'yuksek-sesle-konusma', label: 'Yüksek Sesle Konuşulmasını' },
+    { id: 'mesaja-gec-donulmesi', label: 'Mesajlarıma Geç Dönülmesini' },
+    { id: 'gurultulu-yemek-yenmesi', label: 'Gürültülü Yemek Yenmesini' },
+    { id: 'unutkanlık', label: 'Unutkanlıkları' },
+    { id: 'odaklanamamak', label: 'Odaklanamamaları' },
+    { id: 'telefonla-ugrasmak', label: 'Yanımda Telefonla Uğraşılmasını' }
   ];
 
   const contentOptions = {
