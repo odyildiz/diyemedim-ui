@@ -6,6 +6,7 @@ import SuggestionForm from '../components/SuggestionForm';
 import ContactInfo from '../components/ContactInfo';
 import { blogPosts } from '../data/blogData';
 import { useLanguage } from '../contexts/LanguageContext';
+import backgroundImage from '../assets/background.webp'; // Adjust the path as necessary
 
 const HomePage: React.FC = () => {
   const { t } = useLanguage();
@@ -17,7 +18,7 @@ const HomePage: React.FC = () => {
       <motion.section 
       className="py-16 bg-gradient-to-r from-teal-500 to-purple-500 relative"
       style={{
-        backgroundImage: "url('src/assets/background.webp')",
+        backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}
@@ -44,10 +45,10 @@ const HomePage: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="mb-10 text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-4 animate-pulse">
-          {t('homepage.latestPosts')}
+          Son Blog Yazıları
         </h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          {t('homepage.latestPostsDesc')}
+          En son eklenen blog yazılarımızı keşfedin. Düşüncelerimizi, deneyimlerimizi ve önerilerimizi sizlerle paylaşıyoruz.
         </p>
         </div>
         

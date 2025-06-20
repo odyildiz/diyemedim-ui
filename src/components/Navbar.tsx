@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '../contexts/LanguageContext';
+import logo from '../assets/logo.png'; // Adjust the path as necessary
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +25,7 @@ const Navbar: React.FC = () => {
     <nav className="bg-gradient-to-r from-teal-600 to-purple-600 text-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link to={language === 'en' ? '/en' : '/'} className="text-2xl font-bold tracking-tight hover:text-teal-100 transition transform hover:scale-110 flex items-center">
-          <img src="src/assets/logo.png" alt="diyemedim.com logo" className="h-15 w-auto mr-3" />
+          <img src={logo} alt="diyemedim.com logo" className="h-15 w-auto mr-3" />
         </Link>
 
         {/* Desktop Navigation */}
