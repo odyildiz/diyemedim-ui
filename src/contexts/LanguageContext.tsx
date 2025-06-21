@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Language = 'tr' | 'en';
 
@@ -126,7 +127,39 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('tr');
+  const location = useLocation();
+  const navigate = useNavigate();
+  // Determine initial language from URL
+  const getLangFromPath = (pathname: string): Language => {
+    return pathname.startsWith('/en') ? 'en' : 'tr';
+  };
+  const [language, setLanguageState] = useState<Language>(getLangFromPath(location.pathname));
+
+  // Update language state when URL changes
+  useEffect(() => {
+    const urlLang = getLangFromPath(location.pathname);
+    if (urlLang !== language) {
+      setLanguageState(urlLang);
+    }
+    // eslint-disable-next-line
+  }, [location.pathname]);
+
+  // Update URL when language changes via setLanguage
+  const setLanguage = (lang: Language) => {
+    if (lang === language) return;
+    let newPath = location.pathname;
+    if (lang === 'en') {
+      if (!newPath.startsWith('/en')) {
+        newPath = '/en' + (newPath === '/' ? '' : newPath);
+      }
+    } else {
+      if (newPath.startsWith('/en')) {
+        newPath = newPath.replace(/^\/en/, '') || '/';
+      }
+    }
+    navigate(newPath + location.search, { replace: true });
+    setLanguageState(lang);
+  };
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations.tr] || key;
