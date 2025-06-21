@@ -5,23 +5,22 @@ import { useLanguage } from '../contexts/LanguageContext';
 const ContactForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [messageType, setMessageType] = useState('');
-  const [messageContent, setMessageContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
   const [formSuccess, setFormSuccess] = useState('');
   const { t } = useLanguage();
 
   const messageTypes = [
-    { id: 'ter-kokusu', label: 'Ter Kokusunu' },
-    { id: 'agiz-kokusu', label: 'Ağız Kokusunu' },
-    { id: 'kotu-saka', label: 'Kötü Şakaları' },
-    { id: 'bahane-uretilmesi', label: 'Bahane Üretilmesini' },
-    { id: 'yuksek-sesle-konusma', label: 'Yüksek Sesle Konuşulmasını' },
-    { id: 'mesaja-gec-donulmesi', label: 'Mesajlarıma Geç Dönülmesini' },
-    { id: 'gurultulu-yemek-yenmesi', label: 'Gürültülü Yemek Yenmesini' },
-    { id: 'unutkanlık', label: 'Unutkanlıkları' },
-    { id: 'odaklanamamak', label: 'Odaklanamamaları' },
-    { id: 'telefonla-ugrasmak', label: 'Yanımda Telefonla Uğraşılmasını' }
+    { id: 'ter-kokusu', label: t('contactForm.type.sweat') },
+    { id: 'agiz-kokusu', label: t('contactForm.type.breath') },
+    { id: 'kotu-saka', label: t('contactForm.type.joke') },
+    { id: 'bahane-uretilmesi', label: t('contactForm.type.excuse') },
+    { id: 'yuksek-sesle-konusma', label: t('contactForm.type.loud') },
+    { id: 'mesaja-gec-donulmesi', label: t('contactForm.type.lateReply') },
+    { id: 'gurultulu-yemek-yenmesi', label: t('contactForm.type.noisyEat') },
+    { id: 'unutkanlik', label: t('contactForm.type.forgetful') },
+    { id: 'odaklanamamak', label: t('contactForm.type.unfocused') },
+    { id: 'telefonla-ugrasmak', label: t('contactForm.type.phone') }
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -31,12 +30,11 @@ const ContactForm: React.FC = () => {
     
     // Form validation
     if (!email) {
-      setFormError('Lütfen e-posta adresinizi giriniz');
+      setFormError(t('contactForm.error.email'));
       return;
     }
-    
     if (!messageType) {
-      setFormError('Lütfen mesaj türünü seçiniz');
+      setFormError(t('contactForm.error.type'));
       return;
     }
 
@@ -93,7 +91,6 @@ const ContactForm: React.FC = () => {
             value={messageType}
             onChange={(e) => {
               setMessageType(e.target.value);
-              setMessageContent('');
             }}
           >
             <option value="">Seçiniz</option>

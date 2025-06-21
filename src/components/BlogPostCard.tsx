@@ -19,6 +19,7 @@ interface BlogPostCardProps {
 
 const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
   const { language } = useLanguage();
+  // No static text to translate in this component
   const blogLink = language === 'en' ? `/en/blog/${post.id}` : `/blog/${post.id}`;
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">

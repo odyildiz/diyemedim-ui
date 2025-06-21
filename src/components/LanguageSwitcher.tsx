@@ -27,3 +27,4 @@ const LanguageSwitcher: React.FC = () => {
 };
 
 export default LanguageSwitcher;
+// No static text to translate in LanguageSwitcher.tsx

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <footer className="bg-gray-800 text-gray-200 py-8">
       <div className="container mx-auto px-4">
@@ -10,7 +12,7 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-xl font-semibold mb-4">diyemedim.com</h3>
             <p className="mb-4 text-gray-400">
-              Tüm düşüncelerinizi, önerilerinizi ve sorularınızı bize iletebilirsiniz.
+              {t('footer.desc')}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -26,17 +28,17 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-xl font-semibold mb-4">Hızlı Linkler</h3>
+            <h3 className="text-xl font-semibold mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Ana Sayfa</Link></li>
-              <li><Link to="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link></li>
-              <li><Link to="/#iletisim" className="text-gray-400 hover:text-white transition-colors">İletişim</Link></li>
-              <li><Link to="/#onerileriniz" className="text-gray-400 hover:text-white transition-colors">Önerileriniz</Link></li>
+              <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">{t('nav.home')}</Link></li>
+              <li><Link to="/blog" className="text-gray-400 hover:text-white transition-colors">{t('nav.blog')}</Link></li>
+              <li><Link to="/#iletisim" className="text-gray-400 hover:text-white transition-colors">{t('nav.contact')}</Link></li>
+              <li><Link to="/#onerileriniz" className="text-gray-400 hover:text-white transition-colors">{t('nav.suggestions')}</Link></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-xl font-semibold mb-4">İletişim</h3>
+            <h3 className="text-xl font-semibold mb-4">{t('footer.contact')}</h3>
             <ul className="space-y-3">
               <li className="flex items-center">
                 <MapPin size={18} className="mr-2 text-teal-400" />

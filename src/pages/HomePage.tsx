@@ -10,10 +10,8 @@ import backgroundImage from '../assets/background.webp'; // Adjust the path as n
 
 const HomePage: React.FC = () => {
   const { t } = useLanguage();
-
   return (
     <div className="flex flex-col">
-      
       {/* Contact Form Section - Moved to top */}
       <motion.section 
       className="py-16 bg-gradient-to-r from-teal-500 to-purple-500 relative"
@@ -34,7 +32,6 @@ const HomePage: React.FC = () => {
         </div>
       </div>
       </motion.section>
-      
       {/* Blog Posts Section */}
       <motion.section 
       className="py-16 bg-white"
@@ -45,13 +42,12 @@ const HomePage: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="mb-10 text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-4 animate-pulse">
-          Son Blog Yazıları
+          {t('homepage.latestPosts')}
         </h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          En son eklenen blog yazılarımızı keşfedin. Düşüncelerimizi, deneyimlerimizi ve önerilerimizi sizlerle paylaşıyoruz.
+          {t('homepage.latestPostsDesc')}
         </p>
         </div>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogPosts.slice(0, 3).map((post, index) => (
           <motion.div
@@ -66,7 +62,6 @@ const HomePage: React.FC = () => {
         </div>
       </div>
       </motion.section>
-      
       {/* Suggestions Section */}
       <motion.section 
       id="onerileriniz" 
@@ -84,7 +79,6 @@ const HomePage: React.FC = () => {
         </div>
       </div>
       </motion.section>
-      
       {/* Contact Info Section */}
       <motion.section 
       id="iletisim" 

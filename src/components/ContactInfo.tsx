@@ -2,11 +2,13 @@ import React from 'react';
 import { MapPin, Phone, Mail, Clock, ExternalLink } from 'lucide-react';
 import { div } from 'framer-motion/client';
 import dunyaImage from '../assets/our-home.webp';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ContactInfo: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Bize de yazın</h2>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">{t('contactInfo.title')}</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-6">
@@ -15,7 +17,7 @@ const ContactInfo: React.FC = () => {
             <div className="flex items-start">
               <MapPin className="text-teal-600 mt-1 mr-3" size={20} />
               <div>
-                <p className="text-gray-800">Dünyada bir yerdeyiz</p>
+                <p className="text-gray-800">{t('contactInfo.location')}</p>
               </div>
             </div>
           
@@ -28,7 +30,7 @@ const ContactInfo: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-medium text-gray-700 mb-3">Sosyal Medya</h3>
+            <h3 className="text-lg font-medium text-gray-700 mb-3">{t('contactInfo.social')}</h3>
             <div className="flex space-x-4">
               <a href="#" className="text-teal-600 hover:text-teal-800 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook">

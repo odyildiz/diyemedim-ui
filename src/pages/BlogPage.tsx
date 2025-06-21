@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import BlogPostCard from '../components/BlogPostCard';
 import { blogPosts } from '../data/blogData';
 import { Search } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const BlogPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const { t } = useLanguage();
   
   // Extract unique categories
   const categories = [...new Set(blogPosts.map(post => post.category))];
@@ -25,9 +27,9 @@ const BlogPage: React.FC = () => {
     <div className="py-10 bg-gray-50">
       <div className="container mx-auto px-4">
         <header className="max-w-4xl mx-auto text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Blog</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">{t('blog.title')}</h1>
           <p className="text-lg text-gray-600">
-            Düşüncelerimizi, deneyimlerimizi ve önerilerimizi sizlerle paylaşıyoruz.
+            {t('blog.description')}
           </p>
         </header>
         
@@ -39,7 +41,7 @@ const BlogPage: React.FC = () => {
             </div>
             <input
               type="text"
-              placeholder="Blog yazılarında ara..."
+              placeholder={t('blog.searchPlaceholder')}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -51,7 +53,7 @@ const BlogPage: React.FC = () => {
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
-            <option value="">Tüm Kategoriler</option>
+            <option value="">{t('blog.allCategories')}</option>
             {categories.map(category => (
               <option key={category} value={category}>{category}</option>
             ))}
@@ -66,7 +68,7 @@ const BlogPage: React.FC = () => {
             ))
           ) : (
             <div className="col-span-full text-center py-10">
-              <p className="text-gray-600 text-lg">Aradığınız kriterlere uygun blog yazısı bulunamadı.</p>
+              <p className="text-gray-600 text-lg">{t('blog.noResults')}</p>
             </div>
           )}
         </div>
