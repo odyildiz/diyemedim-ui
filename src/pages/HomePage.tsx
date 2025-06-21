@@ -28,7 +28,7 @@ const HomePage: React.FC = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto transform hover:scale-105 transition-transform duration-300">
         <h2 className="text-3xl font-bold text-center text-white mb-10 animate-bounce">
-          {t('contact.title')}
+          {t('bother.title')}
         </h2>
         <ContactForm />
         </div>

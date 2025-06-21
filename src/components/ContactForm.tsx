@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Send } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ContactForm: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -8,6 +9,7 @@ const ContactForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
   const [formSuccess, setFormSuccess] = useState('');
+  const { t } = useLanguage();
 
   const messageTypes = [
     { id: 'ter-kokusu', label: 'Ter Kokusunu' },
@@ -21,28 +23,6 @@ const ContactForm: React.FC = () => {
     { id: 'odaklanamamak', label: 'Odaklanamamaları' },
     { id: 'telefonla-ugrasmak', label: 'Yanımda Telefonla Uğraşılmasını' }
   ];
-
-  const contentOptions = {
-    'oneri': [
-      { id: 'site', label: 'Site İçeriği Hakkında' },
-      { id: 'tasarim', label: 'Site Tasarımı Hakkında' },
-      { id: 'yeni', label: 'Yeni Özellik Önerisi' }
-    ],
-    'sikayet': [
-      { id: 'teknik', label: 'Teknik Sorun' },
-      { id: 'icerik', label: 'İçerik Hatası' },
-      { id: 'diger', label: 'Diğer' }
-    ],
-    'tesekkur': [
-      { id: 'genel', label: 'Genel Teşekkür' },
-      { id: 'ozel', label: 'Özel Teşekkür' }
-    ],
-    'soru': [
-      { id: 'uyelik', label: 'Üyelik Hakkında' },
-      { id: 'icerik', label: 'İçerikler Hakkında' },
-      { id: 'diger', label: 'Diğer Soru' }
-    ]
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,11 +39,6 @@ const ContactForm: React.FC = () => {
       setFormError('Lütfen mesaj türünü seçiniz');
       return;
     }
-    
-    if (!messageContent) {
-      setFormError('Lütfen mesaj içeriğini seçiniz');
-      return;
-    }
 
     // Submit form logic would go here
     setIsSubmitting(true);
@@ -71,16 +46,15 @@ const ContactForm: React.FC = () => {
     // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
-      setFormSuccess('Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.');
+      setFormSuccess(t('bother.success'));
       setEmail('');
       setMessageType('');
-      setMessageContent('');
     }, 1000);
   };
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">Gönder Gitsin!</h2>
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">{t('bother.header')}</h2>
       
       {formSuccess && (
         <div className="mb-6 p-3 bg-green-100 text-green-800 rounded-md">
@@ -97,13 +71,13 @@ const ContactForm: React.FC = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-            E-Posta Adresi
+            {t('bother.email')}
           </label>
           <input
             type="email"
             id="email"
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-            placeholder="ornek@email.com"
+            placeholder={t('placeHolder.email')}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -111,7 +85,7 @@ const ContactForm: React.FC = () => {
         
         <div>
           <label htmlFor="messageType" className="block text-sm font-medium text-gray-700 mb-1">
-            Gönderilecek Mesaj
+            {t('bother.message')}
           </label>
           <select
             id="messageType"
@@ -128,37 +102,18 @@ const ContactForm: React.FC = () => {
             ))}
           </select>
         </div>
-        
-        {messageType && (
-          <div>
-            <label htmlFor="messageContent" className="block text-sm font-medium text-gray-700 mb-1">
-              Mesaj İçeriği
-            </label>
-            <select
-              id="messageContent"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-              value={messageContent}
-              onChange={(e) => setMessageContent(e.target.value)}
-            >
-              <option value="">Seçiniz</option>
-              {contentOptions[messageType as keyof typeof contentOptions]?.map(option => (
-                <option key={option.id} value={option.id}>{option.label}</option>
-              ))}
-            </select>
-          </div>
-        )}
-
+         
         <button
           type="submit"
           disabled={isSubmitting}
           className="w-full flex items-center justify-center px-4 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition-colors duration-200"
         >
           {isSubmitting ? (
-            <span>Gönderiliyor...</span>
+            <span>{t('bother.sending')}</span>
           ) : (
             <>
               <Send size={18} className="mr-2" />
-              <span>Gönder</span>
+              <span>{t('bother.send')}</span>
             </>
           )}
         </button>
