@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Send } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import ReCAPTCHA from 'react-google-recaptcha';
+
+const RECAPTCHA_SITE_KEY = 'YOUR_RECAPTCHA_SITE_KEY'; // Replace with your actual site key
 
 const SuggestionForm: React.FC = () => {
   const [suggestion, setSuggestion] = useState('');
@@ -9,6 +12,8 @@ const SuggestionForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
   const [formSuccess, setFormSuccess] = useState('');
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   const { t } = useLanguage();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -26,6 +31,11 @@ const SuggestionForm: React.FC = () => {
       setFormError(t('suggestionForm.error.email'));
       return;
     }
+    
+    if (!recaptchaToken) {
+      setFormError('Lütfen reCAPTCHA doğrulamasını tamamlayın.');
+      return;
+    }
 
     // Submit form logic would go here
     setIsSubmitting(true);
@@ -37,6 +47,8 @@ const SuggestionForm: React.FC = () => {
       setSuggestion('');
       setName('');
       setEmail('');
+      setRecaptchaToken(null);
+      if (recaptchaRef.current) recaptchaRef.current.reset();
     }, 1000);
   };
 
@@ -97,6 +109,14 @@ const SuggestionForm: React.FC = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
+        </div>
+        
+        <div>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={RECAPTCHA_SITE_KEY}
+            onChange={(token: string | null) => setRecaptchaToken(token)}
+          />
         </div>
         
         <button
